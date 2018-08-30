@@ -1,21 +1,61 @@
 # poc-base
 
 This is base repository for PoC (Proof of Concept) code.
+Boilerplate project for creating python task using the [Pipeline-framework](https://github.com/podder-ai/pipeline-framework).
 
-## Usage
+## How to implement your code
 
 ### Preparation
 
 ```bash
-$ git clone git@github.com:takp/poc-base.git
+# clone poc-base
+$ git clone git@github.com:podder-ai/poc-base.git
 $ cd poc-base
-$ pip install -r requirements.txt
+# configure environment variables
 $ cp .env.sample .env
+# enable python3
+$ python3 -m venv env
+$ source env/bin/activate
+# install required libraries
+$ pip install -r requirements.txt
+# run sample code
+$ python main.py
 ```
 
-### Add your code
+## Source code directory
+
+```
+$ tree . -L 2
+.
+├── README.md
+├── app
+│   ├── __init__.py
+│   ├── __pycache__
+│   └── task.py  # main task implementation
+├── data
+│   └── tmp      # where to put your data 
+├── framework    # framework code base
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── base_task.py
+│   ├── config.py
+│   ├── context.py
+│   ├── file.py
+│   └── logger.py
+├── main.py
+├── requirements.txt # add required packages here
+├── .env.sample # sample of environment variables 
+├── .env # where to add your environment variables 
+```
+
+
+### How to implement a task class
 
 Add your code to `app/task.py`. 
+
+#### Implementation sample
+
+Please check task sample here [Sample](https://github.com/podder-ai/poc-base-sample)
 
 #### __init__: Initialize task instance 
 
@@ -49,24 +89,23 @@ def set_arguments(self, parser) -> None:
 
 ```
 
-For more detail implement, please check task example here [Examples](./examples)
-
 ### Framework API
+
+Some framework APIs you can use for your implementation.
 
 #### Logging
 
-You can output logs with `self.context.logger`.
-
-For further logging usage. Please check [here](https://docs.python.org/3.6/library/logging.html)
+You can output logs with `self.context.logger`. `logger` is just a wrapper of logging. For further logging usage, please check [here](https://docs.python.org/3.6/library/logging.html)
 
 ```python
 self.context.logger.debug("debug")
 self.context.logger.info("info")
 ```
 
-#### Env var
+#### Environment variables
 
-You can access to environment variables with `self.context.config`.
+Please config  your environment variables in `.env` file.
+You can access to environment variables with `self.context.config.get([YOUR_ENV_KEY])`.
 
 ```dotenv
 ENV=local
@@ -79,26 +118,40 @@ self.context.config.get("ENV") # local
 
 You can access to arguments through `self.args` after set your arguments through `set_arguments` method.
 
-Adding command line arguments.
+Adding command line arguments implementation
 ```python
 parser.add_argument('--model', dest="model_path", help='set model path')
 ```
 
-Framework uses ArgumentParser in background. You can check usage of ArgumentParser [here](https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser)
+Framework uses ArgumentParser in background. You can check usage of ArgumentParser usage [here](https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser)
 
 Get command line arguments
 ```python
 model_path = self.args.model_path
 ```
 
-### Add your environment variables to `.env` file.
+#### Data files
 
-```dotenv
-ENV=develop
+You can get absolute path under `data` directory by `self.context.file.get_path`. Please put your files (data set or any necessary files) under `data` directory.
+
+```python
+self.context.file.get_path('sample.csv')
 ```
 
 ### Run
 
+Run your task with argument
 ```bash
-$ python main.py
+$ python main.py --model your_model_path
 ```
+
+## Implementation note
+
+Finally, your task implementation will be integrated to Pipeline-framework and deploy using Docker/Kubernetes.
+To make it easier, please follow this implementation rules below.
+
+- Only add your code to `app/task.py`
+- Put your data set or model files to `data`
+- Your task implementation will be compiled by Cython in integrating. Please don't use `__file__` in your code.
+- Please add issue & pull request if you have any request
+
