@@ -1,6 +1,8 @@
 from framework import Context
 import argparse
 
+from typing import Any
+
 DATA_PATH = "data/"
 
 
@@ -10,11 +12,11 @@ class BaseTask(object):
     Please add your concrete code to concrete task class: `app/task.py`.
     """
 
-    def __init__(self):
-        self.context = Context()
+    def __init__(self, context: Context) -> None:
+        self.context = context
         self.args = self.get_arguments()
 
-    def execute(self) -> None:
+    def execute(self) -> Any:
         pass
 
     def get_arguments(self) -> argparse.Namespace:
