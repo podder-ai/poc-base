@@ -1,6 +1,8 @@
 from framework import Context
 import argparse
 
+from typing import Any
+
 DATA_PATH = "data/"
 
 
@@ -14,7 +16,7 @@ class BaseTask(object):
         self.context = context
         self.args = self.get_arguments()
 
-    def execute(self) -> None:
+    def execute(self) -> Any:
         pass
 
     def get_arguments(self) -> argparse.Namespace:

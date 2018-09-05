@@ -1,5 +1,6 @@
 from framework import BaseTask
 from framework import Context
+from typing import Any
 
 DATA_PATH = "data/"
 
@@ -12,7 +13,7 @@ class Task(BaseTask):
     def __init__(self, context: Context) -> None:
         super().__init__(context)
 
-    def execute(self) -> None:
+    def execute(self) -> Any:
         """
         Concrete execute method.
 
