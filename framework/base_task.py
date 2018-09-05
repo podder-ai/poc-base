@@ -10,8 +10,8 @@ class BaseTask(object):
     Please add your concrete code to concrete task class: `app/task.py`.
     """
 
-    def __init__(self):
-        self.context = Context()
+    def __init__(self, context: Context) -> None:
+        self.context = context
         self.args = self.get_arguments()
 
     def execute(self) -> None:

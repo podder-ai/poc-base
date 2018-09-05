@@ -1,4 +1,5 @@
 from framework import BaseTask
+from framework import Context
 
 DATA_PATH = "data/"
 
@@ -8,8 +9,8 @@ class Task(BaseTask):
     Concrete task class.
     """
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, context: Context) -> None:
+        super().__init__(context)
 
     def execute(self) -> None:
         """
