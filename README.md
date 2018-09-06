@@ -20,11 +20,11 @@ $ tree . -L 2
 ├── framework    # framework code base
 │   ├── __init__.py
 │   ├── __pycache__
-│   ├── base_task.py
 │   ├── config.py
 │   ├── context.py
 │   ├── file.py
-│   └── logger.py
+│   ├── logger.py
+│   └── tasks
 ├── main.py
 ├── requirements.txt # add required packages here
 ├── .env.sample # sample of environment variables 
@@ -42,11 +42,9 @@ Please check task sample here [Sample](https://github.com/podder-ai/poc-base-sam
 #### __init__: Initialize task instance 
 
 ```python
- def __init__(self):
- 
+def __init__(self, context: Context) -> None:
     self.context.logger.debug("Initiate task...")
-
-    super().__init__()
+    super().__init__(context)
 ```
 
 #### execute: Main process
