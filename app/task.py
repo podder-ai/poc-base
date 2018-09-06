@@ -1,4 +1,4 @@
-from framework import BaseTask
+from framework.tasks import BaseTask
 from framework import Context
 from typing import Any
 
@@ -34,6 +34,7 @@ class Task(BaseTask):
             Please put your files (data set or any necessary files) under `data` directory.
             (e.g.) self.context.file.get_path('sample.csv')
         """
+        self.context.logger.debug("logging output")
 
     def set_arguments(self, parser) -> None:
         """
