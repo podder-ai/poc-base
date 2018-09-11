@@ -7,7 +7,7 @@ class File(object):
     """
     DATA_DIR = 'data' + os.path.sep
 
-    def get_path(self, path) -> str:
+    def get_path(self, path: str = '') -> str:
         """
         Returns absolute path to `data` directory.
         """
