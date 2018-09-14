@@ -1,5 +1,4 @@
 from framework import Context
-import argparse
 
 from typing import Any
 
@@ -14,15 +13,10 @@ class BaseTask(object):
 
     def __init__(self, context: Context) -> None:
         self.context = context
-        self.args = self.get_arguments()
+        self.set_arguments()
 
     def execute(self) -> Any:
         pass
 
-    def get_arguments(self) -> argparse.Namespace:
-        parser = argparse.ArgumentParser()
-        self.set_arguments(parser)
-        return parser.parse_args()
-
-    def set_arguments(self, parser) -> None:
+    def set_arguments(self) -> None:
         pass

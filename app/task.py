@@ -24,11 +24,11 @@ class Task(BaseTask):
             (e.g.) self.context.logger.debug("logging output")
         2. Env var:
             You can access to environment variables with `self.context.config`.
-            (e.g.) self.context.config.get("KEY")
+            (e.g.) self.context.config.get_env("KEY")
         3. Command Line Arguments:
             You can access to arguments through `self.args` after set your arguments
             through `set_arguments` method.
-            (e.g.) self.args.model_path
+            (e.g.) self.context.config.get('model_path')
         4. File Path:
             You can get absolute path under `data` directory by `self.context.file.get_path`.
             Please put your files (data set or any necessary files) under `data` directory.
@@ -36,12 +36,12 @@ class Task(BaseTask):
         """
         self.context.logger.debug("logging output")
 
-    def set_arguments(self, parser) -> None:
+    def set_arguments(self) -> None:
         """
         Set your command line arguments if necessary.
 
         Notes
         -----
         Adding command line arguments.
-        (e.g.) `parser.add_argument('--model', dest="model_path", help='set model path')`
+        (e.g.) `self.context.config.set_argument('--model', dest="model_path", help='set model path')`
         """
