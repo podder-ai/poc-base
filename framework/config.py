@@ -1,4 +1,3 @@
-import os
 from typing import Optional
 from dotenv import load_dotenv
 import argparse
@@ -9,9 +8,6 @@ load_dotenv()
 class Config(object):
     def __init__(self):
         self.parser = argparse.ArgumentParser()
-
-    def get_env(self, key: str) -> Optional[str]:
-        return os.environ.get(key)
 
     def get(self, key: str) -> Optional[str]:
         return getattr(self.parser.parse_args(), key)

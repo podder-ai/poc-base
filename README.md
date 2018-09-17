@@ -27,8 +27,6 @@ $ tree . -L 2
 │   └── tasks
 ├── main.py
 ├── requirements.txt # add required packages here
-├── .env.sample # sample of environment variables 
-├── .env # where to add your environment variables 
 ```
 
 ### How to implement a task class
@@ -82,18 +80,6 @@ self.context.logger.debug("debug")
 self.context.logger.info("info")
 ```
 
-#### Environment variables
-
-Please config  your environment variables in `.env` file.
-You can access to environment variables with `self.context.config.get([YOUR_ENV_KEY])`.
-
-```dotenv
-ENV=local
-```
-```python
-self.context.config.get("ENV") # local
-```
-
 #### Command Line Arguments
 
 You can access to arguments through `self.args` after set your arguments through `set_arguments` method.
@@ -133,8 +119,6 @@ $ python main.py --model your_model_path
 # clone poc-base
 $ git clone git@github.com:podder-ai/poc-base.git
 $ cd poc-base
-# configure environment variables if require
-$ cp .env.sample .env
 # enable python3
 $ python3 -m venv env
 $ source env/bin/activate
@@ -158,8 +142,6 @@ C:\>Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force -Verbose
 # clone poc-base
 C:\> git clone git@github.com:podder-ai/poc-base.git
 C:\> cd poc-base
-# configure environment variables if require
-C:\> cp .env.sample .env
 # enable python3
 C:\>python3 -m venv C:\path\to\myenv
 # Windows cmd.exe
