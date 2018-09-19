@@ -1,8 +1,5 @@
 from typing import Optional
-from dotenv import load_dotenv
 import argparse
-
-load_dotenv()
 
 
 class Config(object):
