@@ -1,5 +1,5 @@
 from framework.tasks import BaseTask
-from framework import Context
+from framework.context import Context
 from typing import Any
 
 DATA_PATH = "data/"
