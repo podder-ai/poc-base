@@ -98,11 +98,23 @@ model_path = self.args.model_path
 
 #### Data files
 
-You can get absolute path under `data` directory by `self.context.file.get_path`. Please put your files (data set or any necessary files) under `data` directory.
+You can get absolute path using`self.context.file`.
+
+- `data` directory: `self.context.file.get_data_path`
+
+Please put your data or saved models under `data` directory.
 
 ```python
-self.context.file.get_path('sample.csv')
+sample_csv_path = self.context.file.get_data_path('sample.csv')
 ```
+
+- `tmp` directory
+
+Please use `tmp` directory for temporary files.
+
+```python
+tmp_csv_path = self.context.file.get_tmp_path('tmp.csv')
+``` 
 
 ### Run
 
