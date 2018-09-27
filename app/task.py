@@ -27,9 +27,10 @@ class Task(BaseTask):
             through `set_arguments` method.
             (e.g.) self.context.config.get('model_path')
         3. File Path:
-            You can get absolute path under `data` directory by `self.context.file.get_path`.
-            Please put your files (data set or any necessary files) under `data` directory.
-            (e.g.) self.context.file.get_path('sample.csv')
+            You can get absolute path to `data` directory by `self.context.file.get_data_path`.
+            Please put your data or saved_models under `data` directory.
+            Also your can use `self.context.file.get_data_path` to get absolute path to `tmp` directory.
+            (e.g.) self.context.file.get_data_path('sample.csv')
         """
         self.context.logger.debug("logging output")
 
