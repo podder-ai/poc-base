@@ -13,7 +13,7 @@ class Task(BaseTask):
     def __init__(self, context: Context) -> None:
         super().__init__(context)
 
-    def execute(self, inputs: List[Any]) -> Any:
+    def execute(self, inputs: List[Any]) -> List[Any]:
         """
         Concrete execute method.
 
@@ -33,10 +33,12 @@ class Task(BaseTask):
             (e.g.) self.context.file.get_data_path('sample.csv')
         """
         self.context.logger.debug("Start executing...")
-        self.context.logger.debug("Inputs: {}".format(inputs))
+        self.context.logger.debug("inputs: {}".format(inputs))
 
         # Add your code here
 
+        outputs = []
+        self.context.logger.debug("outputs: {}".format(outputs))
         self.context.logger.debug("Complete executing.")
 
     def set_arguments(self) -> None:
