@@ -49,4 +49,5 @@ class Task(BaseTask):
         (e.g.) `self.context.config.set_argument('--model', dest="model_path", help='set model path')`
         """
         # This "inputs" value will be passed to execute method as an argument "inputs".
-        self.context.config.set_argument('--inputs', dest='inputs', help='inputs list', required=True)
+        self.context.config.set_argument('--inputs', dest='inputs', help='inputs list',
+                                         required=True, nargs='+')
