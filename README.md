@@ -120,7 +120,7 @@ tmp_csv_path = self.context.file.get_tmp_path('tmp.csv')
 
 Run your task with argument
 ```bash
-$ python main.py --model your_model_path
+$ python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ## How to run your code
@@ -137,7 +137,7 @@ $ source env/bin/activate
 # install required libraries
 $ pip install -r requirements.txt
 # run sample code
-$ python main.py
+$ python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ### For Windows user with PowerShell
@@ -163,7 +163,7 @@ C:\> C:\path\to\myenv\Scripts\Activate.ps1
 # install required libraries
 C:\> pip install -r requirements.txt
 # run sample code
-C:\> python main.py
+C:\> python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ### Via Docker
@@ -177,7 +177,7 @@ For detail Dockerfile check [here](./Dockerfile)
 $ docker build -t poc-sample .
 
 # run code
-$ docker run -ti poc-sample python main.py
+$ docker run -ti poc-sample python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ## Implementation note

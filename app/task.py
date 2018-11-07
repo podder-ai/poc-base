@@ -1,6 +1,6 @@
 from framework.tasks import BaseTask
 from framework.context import Context
-from typing import Any
+from typing import Any, List
 
 DATA_PATH = "data/"
 
@@ -13,7 +13,7 @@ class Task(BaseTask):
     def __init__(self, context: Context) -> None:
         super().__init__(context)
 
-    def execute(self) -> Any:
+    def execute(self, inputs: List[Any]) -> List[Any]:
         """
         Concrete execute method.
 
@@ -32,7 +32,14 @@ class Task(BaseTask):
             Also your can use `self.context.file.get_data_path` to get absolute path to `tmp` directory.
             (e.g.) self.context.file.get_data_path('sample.csv')
         """
-        self.context.logger.debug("logging output")
+        self.context.logger.debug("Start executing...")
+        self.context.logger.debug("inputs: {}".format(inputs))
+
+        # Add your code here
+
+        outputs = []
+        self.context.logger.debug("outputs: {}".format(outputs))
+        self.context.logger.debug("Complete executing.")
 
     def set_arguments(self) -> None:
         """
@@ -43,3 +50,6 @@ class Task(BaseTask):
         Adding command line arguments.
         (e.g.) `self.context.config.set_argument('--model', dest="model_path", help='set model path')`
         """
+        # This "inputs" value will be passed to execute method as an argument "inputs".
+        self.context.config.set_argument('--inputs', dest='inputs', help='inputs list',
+                                         required=True, nargs='+')
