@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package pipeline_framework;
 
-service Task {
+service TaskApi {
     rpc execute (TaskResponse) returns (TaskResponse) {}
 }
 

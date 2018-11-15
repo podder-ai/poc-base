@@ -18,4 +18,6 @@ RUN pip3 install -r /root/requirements.txt
 COPY . /usr/local/python/
 WORKDIR /usr/local/python/
 
+ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
+
 CMD python framework/api/grpc_server.py
