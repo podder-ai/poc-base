@@ -1,2 +1,2 @@
-grpcio-tools
-googleapis-common-protos
+grpcio-tools==1.16.1
+googleapis-common-protos==1.5.5
