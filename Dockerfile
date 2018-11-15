@@ -18,3 +18,4 @@ RUN pip3 install -r /root/requirements.txt
 COPY . /usr/local/python/
 WORKDIR /usr/local/python/
 
+CMD python framework/api/grpc_server.py
