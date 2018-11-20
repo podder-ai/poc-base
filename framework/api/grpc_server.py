@@ -1,11 +1,11 @@
-from concurrent import futures
 import time
+from concurrent import futures
+
 import daemon
-
 import grpc
-# import pipeline_framework_pb2
-import pipeline_framework_pb2_grpc
+from daemon import pidfile
 
+import pipeline_framework_pb2_grpc
 from framework.api.task_api import TaskApi
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
@@ -27,5 +27,6 @@ def serve():
 if __name__ == '__main__':
     stdout = open('/var/log/grpc_server.log', 'a')
     stderr = open('/var/log/grpc_server_error.log', 'a')
-    with daemon.DaemonContext(stdout=stdout, stderr=stderr, detach_process=True):
+    pidfile = daemon.pidfile.PIDLockFile("/var/run/grpc_server.pid")
+    with daemon.DaemonContext(stdout=stdout, stderr=stderr, pidfile=pidfile, detach_process=True):
         serve()
