@@ -22,5 +22,7 @@ WORKDIR /usr/local/python/
 RUN python ./run_codegen.py
 
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
+ENV GRPC_ERROR_LOG="/var/log/grpc_server_error.log"
+ENV GRPC_LOG="/var/log/grpc_server.log"
 
-CMD python framework/api/grpc_server.py; tail -f /var/log/grpc_server_error.log
+CMD python framework/api/grpc_server.py; tail -f $GRPC_ERROR_LOG
