@@ -23,4 +23,4 @@ RUN python ./run_codegen.py
 
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
 
-CMD python framework/api/grpc_server.py
+CMD python framework/api/grpc_server.py; tail -f /var/log/grpc_server_error.log

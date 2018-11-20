@@ -1,5 +1,6 @@
 from concurrent import futures
 import time
+import daemon
 
 import grpc
 # import pipeline_framework_pb2
@@ -24,4 +25,7 @@ def serve():
 
 
 if __name__ == '__main__':
-    serve()
+    stdout = open('/var/log/grpc_server.log', 'a')
+    stderr = open('/var/log/grpc_server_error.log', 'a')
+    with daemon.DaemonContext(stdout=stdout, stderr=stderr, detach_process=True):
+        serve()
