@@ -5,6 +5,7 @@ RUN apt-get update \
 && apt-get install -y python3-pip \
 && apt-get install -y mysql-client \
 && apt-get install -y libmysqlclient-dev \
+&& apt-get install -y wget \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
 && cd /usr/local/bin \
@@ -19,6 +20,7 @@ COPY . /usr/local/python/
 WORKDIR /usr/local/python/
 
 # Compile .proto file
+RUN wget https://raw.githubusercontent.com/podder-ai/pipeline-framework/master/modules/app/api/protos/pipeline_framework.proto -P /usr/local/python/framework/api/protos/
 RUN python ./run_codegen.py
 
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
