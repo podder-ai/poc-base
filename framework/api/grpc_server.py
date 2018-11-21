@@ -10,15 +10,21 @@ import pipeline_framework_pb2_grpc
 from framework.api.task_api import TaskApi
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-GRPC_PID_FILE = '/var/run/grpc_server.pid'
+GRPC_PID_FILE = '/var/run/poc_base.pid'
+DEFAULT_MAX_WORKERS = 10
+DEFAULT_PORT = 50051
 
 
 def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    max_workers = os.environ.get("GRPC_MAX_WORKERS") if os.environ.get("GRPC_MAX_WORKERS") else DEFAULT_MAX_WORKERS
+    port = os.environ.get("GRPC_PORT") if os.environ.get("GRPC_PORT") else DEFAULT_PORT
+
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=int(max_workers)))
     pipeline_framework_pb2_grpc.add_TaskApiServicer_to_server(TaskApi(), server)
-    server.add_insecure_port('[::]:50051')
-    print("[{}] gRPC server is listening to port: '[::]:50051'".format(time.strftime("%Y-%m-%d %H:%m:%S")))
+    server.add_insecure_port('[::]:' + str(port))
+
     server.start()
+    print("[{}] gRPC server is listening to port: '[::]:{}'".format(time.strftime("%Y-%m-%d %H:%m:%S"), port))
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)

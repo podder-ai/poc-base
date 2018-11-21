@@ -24,5 +24,6 @@ RUN python ./run_codegen.py
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
 ENV GRPC_ERROR_LOG="/var/log/grpc_server_error.log"
 ENV GRPC_LOG="/var/log/grpc_server.log"
+ENV GRPC_MAX_WORKERS=10
 
-CMD python framework/api/grpc_server.py; tail -f $GRPC_ERROR_LOG
+CMD python framework/api/grpc_server.py; tail -f $GRPC_LOG & tail -f $GRPC_ERROR_LOG
