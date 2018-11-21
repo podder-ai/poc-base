@@ -40,6 +40,7 @@ class Task(BaseTask):
         outputs = []
         self.context.logger.debug("outputs: {}".format(outputs))
         self.context.logger.debug("Complete executing.")
+        return outputs
 
     def set_arguments(self) -> None:
         """
