@@ -24,6 +24,7 @@ RUN wget https://raw.githubusercontent.com/podder-ai/pipeline-framework/master/m
 RUN python ./run_codegen.py
 
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/python/app:/usr/local/python/framework"
+ENV POC_BASE_ROOT=/usr/local/python
 ENV GRPC_ERROR_LOG="/var/log/grpc_server_error.log"
 ENV GRPC_LOG="/var/log/grpc_server.log"
 ENV GRPC_MAX_WORKERS=10
