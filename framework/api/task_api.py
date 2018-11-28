@@ -1,6 +1,7 @@
+import json
+
 import pipeline_framework_pb2
 import pipeline_framework_pb2_grpc
-
 from app import Task
 from framework import Context
 
@@ -17,11 +18,11 @@ class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
     def _convert_to_input_data(self, request):
         inputs = []
         for result in request.results:
-            inputs.append({'group_id': result.group_id, 'content': result.content})
+            inputs.append({'group_id': result.group_id, 'content': json.loads(result.content)})
         return inputs
 
     def _convert_to_task_response(self, outputs):
         task_response = pipeline_framework_pb2.TaskResponse()
         for output in outputs:
-            task_response.results.add(group_id=output['group_id'], content=output['content'])
+            task_response.results.add(group_id=output['group_id'], content=json.dumps(output['content']))
         return task_response
