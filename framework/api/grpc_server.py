@@ -10,9 +10,9 @@ import pipeline_framework_pb2_grpc
 from framework.api.task_api import TaskApi
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-GRPC_PID_FILE = '/var/run/poc_base.pid'
 DEFAULT_MAX_WORKERS = 10
 DEFAULT_PORT = 50051
+GRPC_PID_FILE = os.environ.get("GRPC_PID_FILE")
 
 
 def serve():
