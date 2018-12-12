@@ -27,7 +27,6 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app:${POC_BASE_ROOT}/framework" \
     GRPC_PID_FILE="/var/run/poc_base.pid"
 
 # Compile .proto file
-RUN wget https://raw.githubusercontent.com/podder-ai/pipeline-framework/master/modules/app/api/protos/pipeline_framework.proto -P ${POC_BASE_ROOT}/framework/api/protos/
 RUN python ./run_codegen.py
 
 RUN chmod +x ./scripts/entrypoint.sh
