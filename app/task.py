@@ -37,7 +37,7 @@ class Task(BaseTask):
 
         # Add your code here
 
-        outputs = []
+        outputs = inputs
         self.context.logger.debug("outputs: {}".format(outputs))
         self.context.logger.debug("Complete executing.")
         return outputs
