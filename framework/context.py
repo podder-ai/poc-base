@@ -4,7 +4,7 @@ from .file import File
 
 
 class Context(object):
-    def __init__(self, dag_id:str):
+    def __init__(self, dag_id:str) -> None:
         self.logger = Logger()
         self.config = Config()
         self.file = File()

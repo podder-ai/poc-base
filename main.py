@@ -3,7 +3,8 @@ from framework import Context
 
 
 def execute() -> None:
-    context = Context()
+    dag_id = 'dag_id'
+    context = Context(dag_id)
     task = Task(context)
     inputs = context.config.get('inputs')
     task.execute(inputs)
