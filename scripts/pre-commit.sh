@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-autopep8 --in-place --recursive --aggressive --max-line-length 80 .
+autopep8 --in-place --recursive --aggressive .
 yapf --in-place --recursive .
 autoflake --in-place --remove-unused-variables --remove-all-unused-imports --recursive .
 isort --recursive .
