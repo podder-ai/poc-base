@@ -1,6 +1,6 @@
-from framework import Context
-
 from typing import Any
+
+from framework import Context
 
 DATA_PATH = "data/"
 

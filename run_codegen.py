@@ -1,4 +1,5 @@
 from grpc_tools import protoc
+
 protoc.main((
     '',
     '-I./framework/api/protos',

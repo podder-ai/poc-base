@@ -7,7 +7,6 @@ from framework import Context
 
 
 class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
-
     def execute(self, request, _context):
         dag_id = request.dag_id
         context = Context(dag_id)
@@ -19,12 +18,17 @@ class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
     def _convert_to_input_data(self, request):
         inputs = []
         for result in request.results:
-            inputs.append({'resource_id': result.resource_id, 'content': json.loads(result.content)})
+            inputs.append({
+                'resource_id': result.resource_id,
+                'content': json.loads(result.content)
+            })
         return inputs
 
-    def _convert_to_task_response(self, dag_id:str, outputs):
+    def _convert_to_task_response(self, dag_id: str, outputs):
         task_response = pipeline_framework_pb2.TaskResponse()
         task_response.dag_id = dag_id
         for output in outputs:
-            task_response.results.add(resource_id=output['resource_id'], content=json.dumps(output['content']))
+            task_response.results.add(
+                resource_id=output['resource_id'],
+                content=json.dumps(output['content']))
         return task_response
