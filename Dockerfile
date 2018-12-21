@@ -12,7 +12,7 @@ RUN apt-get update \
 && ln -s /usr/bin/python3 python \
 && pip3 install --upgrade pip
 
-COPY ./requirements.txt /root/requirements.txt
+COPY ./requirements/requirements.txt /root/requirements.txt
 RUN pip3 install -r /root/requirements.txt
 
 # work directory
