@@ -1,6 +1,7 @@
-from framework.tasks import BaseTask
-from framework.context import Context
 from typing import Any, List
+
+from framework.context import Context
+from framework.tasks import BaseTask
 
 DATA_PATH = "data/"
 
@@ -51,6 +52,11 @@ class Task(BaseTask):
         Adding command line arguments.
         (e.g.) `self.context.config.set_argument('--model', dest="model_path", help='set model path')`
         """
-        # This "inputs" value will be passed to execute method as an argument "inputs".
-        self.context.config.set_argument('--inputs', dest='inputs', help='inputs list',
-                                         required=True, nargs='+')
+        # This "inputs" value will be passed to execute method as an argument
+        # "inputs".
+        self.context.config.set_argument(
+            '--inputs',
+            dest='inputs',
+            help='inputs list',
+            required=True,
+            nargs='+')

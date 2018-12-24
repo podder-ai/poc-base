@@ -1,8 +1,9 @@
 from typing import Any, List
 
+from sqlalchemy.orm.session import Session
+
 from framework.models.example_poc import ResourceModel
 from framework.repositories.base import BaseRepository
-from sqlalchemy.orm.session import Session
 
 
 class ResourceRepository(BaseRepository):
@@ -18,7 +19,8 @@ class ResourceRepository(BaseRepository):
     def find_all(self) -> List[Any]:
         return self.session.query(self.model_class).all()
 
-    def find_by_unique_key(self, dag_id:str, resource_id: str) -> ResourceModel:
+    def find_by_unique_key(self, dag_id: str,
+                           resource_id: str) -> ResourceModel:
         return self.session.query(self.model_class).filter(
-            self.model_class.dag_id == dag_id, 
+            self.model_class.dag_id == dag_id,
             self.model_class.resource_id == resource_id).one_or_none()

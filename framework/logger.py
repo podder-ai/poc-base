@@ -5,7 +5,8 @@ import time
 class Logger(object):
     def __init__(self):
         self.start_time = time.time()
-        logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+        logging.basicConfig(
+            format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
     def warning(self, msg, *args, **kwargs):
         logging.warning(self.add_time(msg), *args, **kwargs)
