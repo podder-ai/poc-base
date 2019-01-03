@@ -29,6 +29,8 @@ $ tree . -L 2
 ├── scripts
 │   ├── entrypoint.sh
 │   └── pre-commit.sh       # execute before committing your codes
+├── tests
+│   └── test_task.py        # add unit test here
 └── tmp                     # where to put your data 
 ```
 
@@ -183,8 +185,9 @@ $ docker build -t poc-sample .
 $ docker run -ti poc-sample python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
-## Linters and Formatters
-Please use linters and formatters before committing your source codes.
+## Linter, Formatter and Unit Test
+Please execute linters, formatters and unit tests before committing your source codes.
+
 ### How To Execute
 You can execute them by the following command.
 Make sure that you are under the root directory of your project. (e.q. poc-base/)
@@ -194,13 +197,19 @@ $ sh ./scripts/pre-commit.sh
 ```
 
 ### Supported Libraries
-#### Linters
+#### Linter
 - flake8
-#### Formatters
+#### Formatter
 - autopep8
 - yapf
 - autoflake
 - isort
+#### Unit Test
+- pytest
+
+### Rules of Development
+Please follow the official documents of the libraries.
+
 
 ## Implementation note
 
