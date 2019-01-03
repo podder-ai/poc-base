@@ -7,6 +7,7 @@ from app import Task
 from framework import Context
 
 DAG_ID = 'dag_id'
+
 '''
 *** DO NOT DELETE!! ***
 At least one unit test should be executed to pass building docker image job.
@@ -19,7 +20,6 @@ https://github.com/podder-ai/pdf-file-sample.git
 SAMPLE_GITHUB_URL = "https://github.com/podder-ai/pdf-file-sample.git"
 SAMPLE_DATA_DIR = 'tests/podder_sample'
 PDF_EXTENTION = '/**/*.pdf'
-
 
 def test_with_sample_pdf():
     context = Context(DAG_ID)
