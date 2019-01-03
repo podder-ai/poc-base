@@ -6,6 +6,7 @@ RUN apt-get update \
 && apt-get install -y mysql-client \
 && apt-get install -y libmysqlclient-dev \
 && apt-get install -y wget \
+&& apt-get install -y git \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
 && cd /usr/local/bin \
@@ -30,4 +31,4 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app:${POC_BASE_ROOT}/framework" \
 RUN python ./run_codegen.py
 
 RUN chmod +x ./scripts/entrypoint.sh
-ENTRYPOINT ["./scripts/entrypoint.sh"]
+CMD ["./scripts/entrypoint.sh"]

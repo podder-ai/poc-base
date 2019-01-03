@@ -9,3 +9,5 @@ autopep8==1.4.3
 yapf==0.25.0
 autoflake==1.2
 isort==4.3.4
+# for unit test
+pytest==4.0.2
