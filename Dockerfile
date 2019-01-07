@@ -6,7 +6,6 @@ RUN apt-get update \
 && apt-get install -y mysql-client \
 && apt-get install -y libmysqlclient-dev \
 && apt-get install -y wget \
-&& apt-get install -y git \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
 && cd /usr/local/bin \
