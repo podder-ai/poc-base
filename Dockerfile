@@ -30,4 +30,4 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app:${POC_BASE_ROOT}/framework" \
 RUN python ./run_codegen.py
 
 RUN chmod +x ./scripts/entrypoint.sh
-ENTRYPOINT ["./scripts/entrypoint.sh"]
+CMD ["./scripts/entrypoint.sh"]
