@@ -37,8 +37,16 @@ class Task(BaseTask):
         self.context.logger.debug("inputs: {}".format(inputs))
 
         # Add your code here
+        outputs = []
+        for input in inputs:
+            output = {
+                'resource_id': input['resource_id'],
+                'content': {
+                    'output_data': input['content']['input_data']
+                }
+            }
+            outputs.append(output)
 
-        outputs = inputs
         self.context.logger.debug("outputs: {}".format(outputs))
         self.context.logger.debug("Complete executing.")
         return outputs

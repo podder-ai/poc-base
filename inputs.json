@@ -1,8 +1,18 @@
 [
   {
-    "path": "sample1.pdf"
+    "input_data": [
+      {
+        "path": "input/data/sample1.pdf",
+        "key": "sample1.pdf"
+      }
+    ]
   },
   {
-    "path": "sample2.pdf"
+    "input_data": [
+      {
+        "path": "input/data/sample2.pdf",
+        "key": "sample2.pdf"
+      }
+    ]
   }
 ]
