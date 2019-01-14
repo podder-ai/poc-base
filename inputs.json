@@ -1,8 +1,8 @@
 [
   {
-    "resource_id": "sample.pdf",
-    "content": {
-      "path": "sample.pdf"
-    }
+    "path": "sample1.pdf"
+  },
+  {
+    "path": "sample2.pdf"
   }
 ]
