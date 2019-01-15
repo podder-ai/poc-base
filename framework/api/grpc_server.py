@@ -7,7 +7,7 @@ import grpc
 from daemon import pidfile
 
 import pipeline_framework_pb2_grpc
-from framework.api.task_api import TaskApi
+from framework.api.task_api import PocBaseApi
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 DEFAULT_MAX_WORKERS = 10
@@ -23,8 +23,8 @@ def serve():
 
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=int(max_workers)))
-    pipeline_framework_pb2_grpc.add_TaskApiServicer_to_server(
-        TaskApi(), server)
+    pipeline_framework_pb2_grpc.add_PocBaseApiServicer_to_server(
+        PocBaseApi(), server)
     server.add_insecure_port('[::]:' + str(port))
 
     server.start()

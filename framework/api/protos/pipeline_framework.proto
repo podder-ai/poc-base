@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package pipeline_framework;
 
-service TaskApi {
+service PocBaseApi {
     rpc execute (TaskResponse) returns (TaskResponse) {}
 }
 
@@ -12,6 +12,6 @@ message TaskResponse {
 }
 
 message Result {
-    string resource_id = 1;
-    string content = 2;
+    string job_id = 1;
+    string job_data = 2;
 }

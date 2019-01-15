@@ -1,18 +1,13 @@
 [
-  {
-    "input_data": [
-      {
-        "path": "input/data/sample1.pdf",
-        "key": "sample1.pdf"
+  {      
+      "resources": [
+          "input/data/sample1-page-1.pdf",
+          "input/data/sample1-page-2.pdf"
+      ],
+      "params": {
+          "name": "John Doe",
+          "address": "Tokyo",
+          "text": "some text"
       }
-    ]
-  },
-  {
-    "input_data": [
-      {
-        "path": "input/data/sample2.pdf",
-        "key": "sample2.pdf"
-      }
-    ]
   }
 ]
