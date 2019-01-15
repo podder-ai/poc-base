@@ -1,11 +1,11 @@
 import json
+import uuid
 from typing import List
 
 from app import Task
 from framework import Context
 
 DAG_ID = "dag_id"
-JOB_ID = "job_id"
 
 def read_inputs_json(context: Context) -> List:
     json_path = context.config.get('inputs')[0]
@@ -17,7 +17,7 @@ def generate_inputs(context: Context) -> List:
     inputs = []
     for index, job_data in enumerate(json_data):
         inputs.append({
-            "job_id": JOB_ID + "_" + str(index),
+            "job_id": str(uuid.uuid4()),
             "job_data": job_data
         })
     return inputs
