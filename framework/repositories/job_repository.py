@@ -1,13 +1,13 @@
 from typing import Any, List
 
-from framework.models import ResourceModel
+from framework.models import JobModel
 from framework.repositories.base import BaseRepository
 from sqlalchemy.orm.session import Session
 
 
-class ResourceRepository(BaseRepository):
+class JobRepository(BaseRepository):
 
-    model_class = ResourceModel
+    model_class = JobModel
     RUNNING_STATUS = 'running'
     COMPLETE_STATUS = 'complete'
 
@@ -18,11 +18,10 @@ class ResourceRepository(BaseRepository):
     def find_all(self) -> List[Any]:
         return self.session.query(self.model_class).all()
 
-    def find_by_job_id(self, job_id: str) -> List[Any]:
+    def find_by_unique_key(self, job_id: str) -> JobModel:
         return self.session.query(self.model_class).filter(
-            self.model_class.job_id == job_id)
+            self.model_class.job_id == job_id).one_or_none()
 
-    def find_by_unique_key(self, job_id: str, resource_id: str) -> ResourceModel:
+    def find_by_dag_id(self, dag_id: str) -> List[Any]:
         return self.session.query(self.model_class).filter(
-            self.model_class.job_id == job_id, 
-            self.model_class.resource_id == resource_id).one_or_none()
+            self.model_class.dag_id == dag_id)

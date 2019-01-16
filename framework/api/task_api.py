@@ -6,7 +6,7 @@ from app import Task
 from framework import Context
 
 
-class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
+class PocBaseApi(pipeline_framework_pb2_grpc.PocBaseApiServicer):
     def execute(self, request, _context):
         dag_id = request.dag_id
         context = Context(dag_id)
@@ -19,8 +19,8 @@ class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
         inputs = []
         for result in request.results:
             inputs.append({
-                'resource_id': result.resource_id,
-                'content': json.loads(result.content)
+                'job_id': result.job_id,
+                'job_data': json.loads(result.job_data)
             })
         return inputs
 
@@ -28,7 +28,5 @@ class TaskApi(pipeline_framework_pb2_grpc.TaskApiServicer):
         task_response = pipeline_framework_pb2.TaskResponse()
         task_response.dag_id = dag_id
         for output in outputs:
-            task_response.results.add(
-                resource_id=output['resource_id'],
-                content=json.dumps(output['content']))
+            task_response.results.add(job_id=output['job_id'], job_data=json.dumps(output['job_data']))
         return task_response

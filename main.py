@@ -1,14 +1,14 @@
 from app import Task
 from framework import Context
+from framework.services import InputsService
 
+DAG_ID = "dag_id"
 
 def execute() -> None:
-    dag_id = 'dag_id'
-    context = Context(dag_id)
+    context = Context(DAG_ID)
     task = Task(context)
-    inputs = context.config.get('inputs')
+    inputs = InputsService(context).create()
     task.execute(inputs)
-
 
 if __name__ == "__main__":
     execute()

@@ -7,4 +7,4 @@ def get(key: str) -> Optional[str]:
 
 
 # Shortcut variables for Framework.
-POC_DATABASE_URL = get('POC_DATABASE_URL')
+PIPELINE_DATABASE_URL = get('PIPELINE_DATABASE_URL')
