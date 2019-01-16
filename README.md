@@ -101,24 +101,42 @@ Get command line arguments
 model_path = self.args.model_path
 ```
 
-#### Data files
+#### Shared directory
 
-You can get absolute path using`self.context.file`.
+You can use `shared` directory for storing your data. 
 
-- `data` directory: `self.context.file.get_data_path`
-
-Please put your data or saved models under `data` directory.
-
-```python
-sample_csv_path = self.context.file.get_data_path('sample.csv')
+```bash
+$ tree -L 1 ./shared
+shared
+├── data
+└── tmp
 ```
 
-- `tmp` directory
+- `shared` directory
 
-Please use `tmp` directory for temporary files.
+You can get absolute path to `shared` directory by `self.context.file.get_shared_path`.
 
 ```python
-tmp_csv_path = self.context.file.get_tmp_path('tmp.csv')
+self.context.file.get_shared_path('sample.csv')
+# => /path/to/shared/sample.csv
+```
+
+- `shared/data` directory: `self.context.file.get_data_path`
+
+Please use `shared/data` directory for storing your necessary data.
+
+```python
+self.context.file.get_data_path('sample.csv')
+# => /path/to/shared/data/sample.csv
+```
+
+- `shared/tmp` directory
+
+Please use `shared/tmp` directory for storing temporary files.
+
+```python
+self.context.file.get_tmp_path('sample-tmp.csv')
+# => /path/to/shared/tmp/sample-tmp.csv
 ``` 
 
 ### Run
