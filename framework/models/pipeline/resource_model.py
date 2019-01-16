@@ -12,6 +12,5 @@ class ResourceModel(BaseModel):
     resource_id = Column('resource_id', String(255), default='', nullable=False)
     job_id = Column('job_id', String(255), default='', nullable=False)
     status = Column('status', String(255), default='', nullable=False)
-    params = Column('params', JSON, default='')
     created_at = Column('created_at', TIMESTAMP, default=datetime.datetime.utcnow, nullable=False)
     updated_at = Column('updated_at', TIMESTAMP, onupdate=datetime.datetime.utcnow)
