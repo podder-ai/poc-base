@@ -14,7 +14,7 @@ class InputsService(object):
     def create(self) -> List:
         json_data = self.read_json()
         inputs = []
-        for job_data in enumerate(json_data):
+        for index, job_data in enumerate(json_data):
             inputs.append({
                 "job_id": str(uuid.uuid4()),
                 "job_data": job_data
