@@ -11,7 +11,7 @@ DAG_ID = "dag_id"
 def execute() -> None:
     context = Context(DAG_ID)
     task = Task(context)
-    inputs = InputsService.create(context)
+    inputs = InputsService(context).create()
     task.execute(inputs)
 
 if __name__ == "__main__":
