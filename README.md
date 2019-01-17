@@ -15,8 +15,6 @@ $ tree . -L 2
 ├── app
 │   └── task.py   # main task implementation
 ├── data
-├── envs
-│   └── env.example
 ├── framework     # framework codes
 │   ├── api
 │   ├── config.py
@@ -203,10 +201,20 @@ $ docker build -t poc-sample .
 $ docker run -ti poc-sample python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
+## Configuration
+
+Copy and create `.env` file and add your env variables.
+
+```bash
+$ cp .env.sample .env
+```
+
 ## Linter, Formatter and Unit Test
+
 Please execute linters, formatters and unit tests before committing your source codes.
 
 ### How To Execute
+
 You can execute them by the following command.
 Make sure that you are under the root directory of your project. (e.q. poc-base/)
 ```
@@ -215,19 +223,24 @@ $ sh ./scripts/pre-commit.sh
 ```
 
 ### Supported Libraries
+
 #### Linter
+
 - flake8
+
 #### Formatter
+
 - autopep8
 - yapf
 - autoflake
 - isort
+
 #### Unit Test
+
 - pytest
 
 ### Rules of Development
 Please follow the official documents of the libraries.
-
 
 ## Implementation note
 
