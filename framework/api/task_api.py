@@ -3,11 +3,12 @@ import json
 import pipeline_framework_pb2
 import pipeline_framework_pb2_grpc
 from app import Task
-from framework import Context
+from framework import Context, settings
 
 
 class PocBaseApi(pipeline_framework_pb2_grpc.PocBaseApiServicer):
     def execute(self, request, _context):
+        settings.init()
         dag_id = request.dag_id
         context = Context(dag_id)
         inputs = self._convert_to_input_data(request)
