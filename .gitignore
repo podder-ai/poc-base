@@ -9,7 +9,7 @@ env/
 venv/
 .env
 .env.*
-!.env.sample
+!.env.example
 
 .vscode
 .idea
