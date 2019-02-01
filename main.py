@@ -1,7 +1,7 @@
 from app import Task
-from framework import Context
-from framework.services import InputsService
-from framework import settings
+from podder_task_base import Context
+from podder_task_base.services import InputsService
+from podder_task_base import settings
 
 DAG_ID = "dag_id"
 
