@@ -24,5 +24,8 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
     GRPC_ERROR_LOG="/var/log/grpc_server_error.log" \
     GRPC_LOG="/var/log/grpc_server.log"
 
+# Compile .proto file for gRPC
+RUN python ./run_codegen.py
+
 RUN chmod +x ./scripts/entrypoint.sh
 CMD ["./scripts/entrypoint.sh"]
