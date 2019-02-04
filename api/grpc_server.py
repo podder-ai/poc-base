@@ -18,9 +18,9 @@ if __name__ == '__main__':
     Run gRPC server.
     """
     GrpcServer(
-        stdout=open(os.getenv("GRPC_LOG"), 'a'),
-        stderr=open(os.getenv("GRPC_ERROR_LOG"), 'a'),
-        pidfile=os.getenv("GRPC_PID_FILE", DEFAULT_GRPC_PID_FILE),
+        stdout_file=open(os.getenv("GRPC_LOG"), 'a'),
+        stderr_file=open(os.getenv("GRPC_ERROR_LOG"), 'a'),
+        pidfile_path=os.getenv("GRPC_PID_FILE", DEFAULT_GRPC_PID_FILE),
         max_workers=os.getenv("GRPC_MAX_WORKERS", DEFAULT_MAX_WORKERS),
         port=os.getenv("GRPC_PORT", DEFAULT_PORT),
         execution_task=Task,
