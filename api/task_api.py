@@ -8,4 +8,4 @@ class PocBaseApi(pipeline_framework_pb2_grpc.PocBaseApiServicer):
         self.execution_task = execution_task
 
     def execute(self, request, context):
-        TaskApiExecutor(self.execution_task, pipeline_framework_pb2).execute(request, context)
+        return TaskApiExecutor(self.execution_task, pipeline_framework_pb2).execute(request, context)
