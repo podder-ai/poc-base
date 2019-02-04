@@ -20,14 +20,9 @@ ENV POC_BASE_ROOT=/usr/local/poc_base
 COPY . ${POC_BASE_ROOT}
 WORKDIR ${POC_BASE_ROOT}
 
-ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app:${POC_BASE_ROOT}/framework" \
+ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
     GRPC_ERROR_LOG="/var/log/grpc_server_error.log" \
-    GRPC_LOG="/var/log/grpc_server.log" \
-    GRPC_MAX_WORKERS=10 \
-    GRPC_PID_FILE="/var/run/poc_base.pid"
-
-# Compile .proto file
-RUN python ./run_codegen.py
+    GRPC_LOG="/var/log/grpc_server.log"
 
 RUN chmod +x ./scripts/entrypoint.sh
 CMD ["./scripts/entrypoint.sh"]
