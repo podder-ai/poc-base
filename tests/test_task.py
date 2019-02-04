@@ -1,5 +1,5 @@
 from app import Task
-from podder_task_base import Context
+from framework import Context
 
 DAG_ID = 'dag_id'
 
