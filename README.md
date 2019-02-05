@@ -12,24 +12,28 @@ $ tree . -L 2
 .
 ├── Dockerfile
 ├── README.md
+├── api
+│   ├── __init__.py
+│   ├── grpc_server.py
+│   ├── protos
+│   └── task_api.py
 ├── app
-│   └── task.py   # main task implementation
-├── data
-├── framework     # framework codes
-│   ├── api
-│   ├── config.py
-│   ├── context.py
+│   ├── __init__.py
+│   └── task.py             # main task implementation
+├── inputs.json
 ├── main.py
 ├── requirements
-│   ├── requirements.develop.txt
-│   └── requirements.txt    # add required packages here
+│   ├── requirements.develop.txt
+│   └── requirements.txt    # add required packages here
 ├── run_codegen.py
 ├── scripts
-│   ├── entrypoint.sh
-│   └── pre-commit.sh       # execute before committing your codes
-├── tests
-│   └── test_task.py        # add unit test here
-└── tmp                     # where to put your data 
+│   ├── entrypoint.sh
+│   └── pre-commit.sh       # execute before committing your codes
+├── shared
+│   ├── data
+│   └── tmp
+└── tests
+    └── test_task.py        # add unit test here
 ```
 
 ### How to implement a task class
@@ -70,9 +74,9 @@ def set_arguments(self, parser) -> None:
 
 ```
 
-### Framework API
+### API
 
-Some framework APIs you can use for your implementation.
+`podder-task-base` python module provides many APIs for the development.
 
 #### Logging
 
@@ -85,18 +89,27 @@ self.context.logger.info("info")
 
 #### Command Line Arguments
 
-You can access to arguments through `self.args` after set your arguments through `set_arguments` method.
+You can add your own command line argument using `self.context.config.set_argument` within `task.py`.
 
-Adding command line arguments implementation
+After you execute with command line arguments, you can access to the passed arguments through `self.context.config.get`.
+
+For example, set `--model` to command line argument. 
+
 ```python
-parser.add_argument('--model', dest="model_path", help='set model path')
+# Set your command line argument
+def set_arguments(self) -> None:
+    self.context.config.set_argument('--model-path', dest="model_path", help='set model path')
 ```
 
-Framework uses ArgumentParser in background. You can check usage of ArgumentParser usage [here](https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser)
+```bash
+# Execute main.py with argument "--model"
+$ python main.py --model-path /path/to/model
+```
 
-Get command line arguments
 ```python
-model_path = self.args.model_path
+# You can access to the value passed to "--model" 
+def execute(self, inputs: List[Any]) -> List[Any]:
+    model = self.context.config.get('model_path')
 ```
 
 #### Shared directory
@@ -244,7 +257,7 @@ Please follow the official documents of the libraries.
 
 ## Implementation note
 
-Finally, your task implementation will be integrated to Pipeline-framework and deploy using Docker/Kubernetes.
+Finally, your task implementation will be integrated to Podder-Pipeline and deploy using Docker/Kubernetes.
 To make it easier, please follow this implementation rules below.
 
 - Only add your code to `app/task.py`
