@@ -3,7 +3,7 @@ from protos import pipeline_framework_pb2_grpc
 from podder_task_base.api.task_api_executor import TaskApiExecutor
 
 
-class PocBaseApi(pipeline_framework_pb2_grpc.PocBaseApiServicer):
+class PodderTaskApi(pipeline_framework_pb2_grpc.PodderTaskApiServicer):
     def __init__(self, execution_task):
         self.execution_task = execution_task
 
