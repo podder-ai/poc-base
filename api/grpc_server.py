@@ -9,7 +9,7 @@ from app import Task
 from podder_task_base.api.grpc_server import GrpcServer
 from protos import pipeline_framework_pb2_grpc
 
-DEFAULT_GRPC_PID_FILE = "/var/run/podder_task.pid"
+DEFAULT_GRPC_PID_FILE = "/var/run/poc_base.pid"
 DEFAULT_PORT = 50051
 DEFAULT_MAX_WORKERS = 10
 
