@@ -1,7 +1,7 @@
 # podder-task
 
 This is base repository for PoC (Proof of Concept) code.
-Boilerplate project for creating python task using the [Pipeline-framework](https://github.com/podder-ai/pipeline-framework).
+Boilerplate project for creating python task using the [podder-pipeline](https://github.com/podder-ai/podder-pipeline).
 
 ## How to implement your code
 
