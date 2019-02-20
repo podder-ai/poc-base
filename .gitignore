@@ -17,3 +17,15 @@ venv/
 # Ignore generated proto interface files
 *_pb2.py
 *_pb2_grpc.py
+
+tmp/*
+!.gitkeep
+
+input/*
+!.gitkeep
+
+output/*
+!.gitkeep
+
+config/*
+!.gitkeep
