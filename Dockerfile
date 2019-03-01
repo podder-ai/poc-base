@@ -12,6 +12,16 @@ RUN apt-get update \
 && ln -s /usr/bin/python3 python \
 && pip3 install --upgrade pip
 
+# locale setting
+RUN apt-get update \
+    && apt-get install -y locales
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    PYTHONIOENCODING=utf-8
+
+# python packages
 COPY ./requirements/requirements.txt /root/requirements.txt
 RUN pip3 install -r /root/requirements.txt
 
