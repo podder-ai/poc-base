@@ -10,14 +10,6 @@ stop_grpc_process() {
     fi
 }
 
-stop_tail_process() {
-    TAIL_PROCESSES=$(ps -ef | grep tail | grep -v "grep" | wc -l)
-    if [ $TAIL_PROCESSES -gt 0 ]; then
-        echo "Found running tail processes. Stop existing tail processes..."
-        ps -ef | grep tail | grep -v grep | awk '{print $2}' | xargs kill
-    fi
-}
-
 if [ -f $GRPC_PID_FILE ]; then
     echo "FOUND grpc pid_file. Stop gRPC process..."
     stop_grpc_process
@@ -26,7 +18,3 @@ fi
 
 echo "Starting gRPC server..."
 python api/grpc_server.py
-
-stop_tail_process
-echo "Continue watching gRPC logs..."
-tail -f -n 0 $GRPC_LOG & tail -f -n 0 $GRPC_ERROR_LOG
