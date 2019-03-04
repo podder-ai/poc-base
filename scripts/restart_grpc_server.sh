@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Starting process..."
+echo "Restart gRPC process..."
 
 stop_grpc_process() {
     PYTHON_PROCESSES=$(ps -ef | grep python | grep -v "grep" | wc -l)
@@ -16,5 +16,5 @@ if [ -f $GRPC_PID_FILE ]; then
     rm -f $GRPC_PID_FILE
 fi
 
-echo "Starting gRPC server..."
+echo "Start gRPC server..."
 python api/grpc_server.py
