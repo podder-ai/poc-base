@@ -1,10 +1,8 @@
 [
-  {      
-      "resources": [
-          "input/data/sample1-page-1.pdf",
-          "input/data/sample1-page-2.pdf"
-      ],
+  {
+      "resources": ["input/data/sample1-page-1.pdf"],
       "params": {
+          "filename": "sample1-page-1.pdf",
           "name": "John Doe",
           "address": "Tokyo",
           "text": "some text"

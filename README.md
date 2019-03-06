@@ -112,42 +112,23 @@ def execute(self, inputs: List[Any]) -> List[Any]:
     model = self.context.config.get('model_path')
 ```
 
-#### Shared directory
+#### Shared directories
 
-You can use `shared` directory for storing your data.
+There are 4 shared directories, which is `config`, `input`, `output`, `tmp`. 
+They are shared among the environment and every containers can access them.
 
-```bash
-$ tree -L 1 ./shared
-shared
-├── data
-└── tmp
-```
+- `config`: Where config files are located.
+- `input`:  Where input files are located.
+- `output`: Where output files are located.
+- `tmp`:    Where temporary files are located. Podder Pipeline creates the 
+  directory under the `tmp/dag_id/job_id` to keep each job's temporary files.
 
-- `shared` directory
-
-You can get absolute path to `shared` directory by `self.context.file.get_shared_path`.
-
-```python
-self.context.file.get_shared_path('sample.csv')
-# => /path/to/shared/sample.csv
-```
-
-- `shared/data` directory: `self.context.file.get_data_path`
-
-Please use `shared/data` directory for storing your necessary data.
+When you need to locate the temporary files, please put them into `tmp` directory.
+You can get the path to `tmp` directory by `self.context.file.get_tmp_path(file_name)`. 
 
 ```python
-self.context.file.get_data_path('sample.csv')
-# => /path/to/shared/data/sample.csv
-```
-
-- `shared/tmp` directory
-
-Please use `shared/tmp` directory for storing temporary files.
-
-```python
-self.context.file.get_tmp_path('sample-tmp.csv')
-# => /path/to/shared/tmp/sample-tmp.csv
+self.context.file.get_tmp_path('sample.csv')
+# => /path/to/shared/tmp/sample.csv
 ```
 
 ### Run
