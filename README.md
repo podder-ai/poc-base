@@ -131,16 +131,38 @@ self.context.file.get_tmp_path('sample.csv')
 # => /path/to/shared/tmp/sample.csv
 ```
 
-### Run
+## How to run Podder Task
 
-Run your task with argument
+### Run on Docker
+
+We strongly recommend to run Podder Task using Docker.
+
+- Build docker image
+
 ```bash
-$ python main.py --inputs /path/to/input/a /path/to/input/b
+$ docker build -t podder-task .
 ```
 
-## How to run your code
+- Execute on the docker container
 
-### For Mac os, Linux user
+```bash
+$ docker run -it --env-file .env.example podder-task bash
+
+# You can run your code
+$ python main.py --inputs inputs.json
+```
+
+- Run with one-liner
+
+If you want to run it with one-liner code, you can also run it.
+
+```bash
+$ docker run -it --env-file .env.example podder-task python main.py --inputs inputs.json
+```
+
+### Run on local
+
+#### For Mac os, Linux user
 
 ```bash
 # clone podder-task
@@ -155,7 +177,7 @@ $ pip install -r requirements.txt
 $ python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
-### For Windows user with PowerShell
+#### For Windows user with PowerShell
 
 If using Powershell, the activate script is subject to the execution policies on the system. By default on Windows 7, the system's excution policy is set to `Restricted`, meaning no scripts as virtualenv activation script are allowed to be executed.
 
@@ -179,20 +201,6 @@ C:\> C:\path\to\myenv\Scripts\Activate.ps1
 C:\> pip install -r requirements.txt
 # run sample code
 C:\> python main.py --inputs /path/to/input/a /path/to/input/b
-```
-
-### Via Docker
-
-To skip python environment setting, we are using Docker to run task.
-For detail Dockerfile check [here](./Dockerfile)
-
-
-```bash
-# build docker image with python enviroment
-$ docker build -t podder-task-sample .
-
-# run code
-$ docker run -ti podder-task-sample python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ## Configuration
