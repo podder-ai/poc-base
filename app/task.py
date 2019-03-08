@@ -23,8 +23,8 @@ class Task(BaseTask):
         Notes
         -----
         1. Logging:
-            You can output logs with `self.context.logger`.
-            (e.g.) self.context.logger.debug("logging output")
+            You can output logs with `self.logger`.
+            (e.g.) self.logger.debug("logging output")
         2. Command Line Arguments:
             You can access to arguments through `self.context.config.get` after set your arguments
             through `set_arguments` method.
