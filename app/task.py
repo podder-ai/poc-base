@@ -2,10 +2,12 @@ from typing import Any, List
 
 from podder_task_base.context import Context
 from podder_task_base.tasks import BaseTask
+from podder_task_base.log import logger
 
 DATA_PATH = "data/"
 
 
+@logger.class_logger
 class Task(BaseTask):
     """
     Concrete task class.
@@ -21,8 +23,8 @@ class Task(BaseTask):
         Notes
         -----
         1. Logging:
-            You can output logs with `self.context.logger`.
-            (e.g.) self.context.logger.debug("logging output")
+            You can output logs with `self.logger`.
+            (e.g.) self.logger.debug("logging output")
         2. Command Line Arguments:
             You can access to arguments through `self.context.config.get` after set your arguments
             through `set_arguments` method.
@@ -33,14 +35,14 @@ class Task(BaseTask):
             Also your can use `self.context.file.get_tmp_path` to get absolute path to `tmp` directory.
             (e.g.) self.context.file.get_tmp_path('sample.csv')
         """
-        self.context.logger.debug("Start executing...")
-        self.context.logger.debug("inputs: {}".format(inputs))
+        self.logger.debug("Start executing...")
+        self.logger.debug("inputs: {}".format(inputs))
 
         # Add your code here
 
         outputs = inputs
-        self.context.logger.debug("outputs: {}".format(outputs))
-        self.context.logger.debug("Complete executing.")
+        self.logger.debug("outputs: {}".format(outputs))
+        self.logger.debug("Complete executing.")
         return outputs
 
     def set_arguments(self) -> None:

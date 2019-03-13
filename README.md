@@ -21,6 +21,7 @@ $ tree . -L 2
 │   ├── __init__.py
 │   └── task.py             # main task implementation
 ├── inputs.json
+├── log.yml
 ├── main.py
 ├── requirements
 │   ├── requirements.develop.txt
@@ -48,7 +49,7 @@ Please check task sample here [Sample](https://github.com/podder-ai/podder-task-
 
 ```python
 def __init__(self, context: Context) -> None:
-    self.context.logger.debug("Initiate task...")
+    self.logger.debug("Initiate task...")
     super().__init__(context)
 ```
 
@@ -57,11 +58,11 @@ def __init__(self, context: Context) -> None:
 ```python
 def execute(self) -> None:
 
-    self.context.logger.debug("START processing...")
+    self.logger.debug("START processing...")
 
     self.yourProcess(self.args.input_path)
 
-    self.context.logger.debug("Completed.")
+    self.logger.debug("Completed.")
 
 ```
 
@@ -80,11 +81,11 @@ def set_arguments(self, parser) -> None:
 
 #### Logging
 
-You can output logs with `self.context.logger`. `logger` is just a wrapper of logging. For further logging usage, please check [here](https://docs.python.org/3.6/library/logging.html)
+You can output logs with `self.logger`. `logger` is just a wrapper of logging. For further logging usage, please check [here](https://docs.python.org/3.6/library/logging.html)
 
 ```python
-self.context.logger.debug("debug")
-self.context.logger.info("info")
+self.logger.debug("debug")
+self.logger.info("info")
 ```
 
 #### Command Line Arguments
