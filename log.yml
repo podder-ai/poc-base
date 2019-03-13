@@ -1,5 +1,6 @@
 # DO NOT EDIT DIRECTLY
-task_log_format: "time:[%(time)s]	name:%(name)s	taskname:%(taskname)s	scriptinfo:[%(scriptinfo)s]	loglevel:%(levelname)s	progresstime:%(progresstime)s	tasktime:%(tasktime)s	message:[%(message)s]"
+task_name: podder-task
+task_log_format: "time:[%(time)s]\tname:%(name)s\ttaskname:%(taskname)s\tscriptinfo:[%(scriptinfo)s]\tloglevel:%(levelname)s\tprogresstime:%(progresstime)s\ttasktime:%(tasktime)s\tmessage:[%(message)s]"
 task_log_level: DEBUG
-sql_log_format: "time:[%(asctime)s]	name:%(name)s	loglevel:%(levelname)s	message:[%(message)s]"
+sql_log_format: "time:[%(asctime)s]\tname:%(name)s\tloglevel:%(levelname)s\tmessage:[%(message)s]"
 sql_log_level: WARN
