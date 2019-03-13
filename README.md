@@ -112,54 +112,57 @@ def execute(self, inputs: List[Any]) -> List[Any]:
     model = self.context.config.get('model_path')
 ```
 
-#### Shared directory
+#### Shared directories
 
-You can use `shared` directory for storing your data.
+There are 4 shared directories, which is `config`, `input`, `output`, `tmp`. 
+They are shared among the environment and every containers can access them.
+
+- `config`: Where config files are located.
+- `input`:  Where input files are located.
+- `output`: Where output files are located.
+- `tmp`:    Where temporary files are located. Podder Pipeline creates the 
+  directory under the `tmp/dag_id/job_id` to keep each job's temporary files.
+
+When you need to locate the temporary files, please put them into `tmp` directory.
+You can get the path to `tmp` directory by `self.context.file.get_tmp_path(file_name)`. 
+
+```python
+self.context.file.get_tmp_path('sample.csv')
+# => /path/to/shared/tmp/sample.csv
+```
+
+## How to run Podder Task
+
+### Run on Docker
+
+We strongly recommend to run Podder Task using Docker.
+
+- Build docker image
 
 ```bash
-$ tree -L 1 ./shared
-shared
-├── data
-└── tmp
+$ docker build -t podder-task .
 ```
 
-- `shared` directory
+- Execute on the docker container
 
-You can get absolute path to `shared` directory by `self.context.file.get_shared_path`.
-
-```python
-self.context.file.get_shared_path('sample.csv')
-# => /path/to/shared/sample.csv
-```
-
-- `shared/data` directory: `self.context.file.get_data_path`
-
-Please use `shared/data` directory for storing your necessary data.
-
-```python
-self.context.file.get_data_path('sample.csv')
-# => /path/to/shared/data/sample.csv
-```
-
-- `shared/tmp` directory
-
-Please use `shared/tmp` directory for storing temporary files.
-
-```python
-self.context.file.get_tmp_path('sample-tmp.csv')
-# => /path/to/shared/tmp/sample-tmp.csv
-```
-
-### Run
-
-Run your task with argument
 ```bash
-$ python main.py --inputs /path/to/input/a /path/to/input/b
+$ docker run -it --env-file .env.example podder-task bash
+
+# You can run your code
+$ python main.py --inputs inputs.json
 ```
 
-## How to run your code
+- Run with one-liner
 
-### For Mac os, Linux user
+If you want to run it with one-liner code, you can also run it.
+
+```bash
+$ docker run -it --env-file .env.example podder-task python main.py --inputs inputs.json
+```
+
+### Run on local
+
+#### For Mac os, Linux user
 
 ```bash
 # clone podder-task
@@ -174,7 +177,7 @@ $ pip install -r requirements.txt
 $ python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
-### For Windows user with PowerShell
+#### For Windows user with PowerShell
 
 If using Powershell, the activate script is subject to the execution policies on the system. By default on Windows 7, the system's excution policy is set to `Restricted`, meaning no scripts as virtualenv activation script are allowed to be executed.
 
@@ -198,20 +201,6 @@ C:\> C:\path\to\myenv\Scripts\Activate.ps1
 C:\> pip install -r requirements.txt
 # run sample code
 C:\> python main.py --inputs /path/to/input/a /path/to/input/b
-```
-
-### Via Docker
-
-To skip python environment setting, we are using Docker to run task.
-For detail Dockerfile check [here](./Dockerfile)
-
-
-```bash
-# build docker image with python enviroment
-$ docker build -t podder-task-sample .
-
-# run code
-$ docker run -ti podder-task-sample python main.py --inputs /path/to/input/a /path/to/input/b
 ```
 
 ## Configuration

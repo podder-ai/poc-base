@@ -1,9 +1,6 @@
 [
-  {      
-      "resources": [
-          "input/data/sample1-page-1.pdf",
-          "input/data/sample1-page-2.pdf"
-      ],
+  {
+      "resources": ["input/data/sample1-page-1.pdf"],
       "params": {
           "name": "John Doe",
           "address": "Tokyo",

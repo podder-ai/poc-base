@@ -19,13 +19,7 @@ venv/
 *_pb2_grpc.py
 
 tmp/*
-!.gitkeep
-
 input/*
-!.gitkeep
-
 output/*
-!.gitkeep
-
 config/*
 !.gitkeep
