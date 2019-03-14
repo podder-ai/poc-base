@@ -5,5 +5,4 @@ mysqlclient==1.4.1
 SQLAlchemy==1.2.17
 pytest==4.0.2
 python-dotenv==0.10.1
-PyYAML==3.13
 podder-task-base>=0.1.1,<0.2.0
