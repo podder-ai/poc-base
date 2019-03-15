@@ -1,13 +1,61 @@
 from app import Task
 from podder_task_base import Context
+from logging import getLogger
 
-DAG_ID = 'dag_id'
+logger = getLogger()
 
-'''
-*** DO NOT DELETE!! ***
-At least one unit test should be executed to pass building docker image job.
-'''
-def test_if_execute_method_exit():
-    context = Context(DAG_ID)
-    task = Task(context)
-    task.execute([])
+
+class TestTask:
+
+  DAG_ID = "dag_id"
+  JOB_ID = "job_id"
+  INPUTS = [
+    {
+      "job_id": JOB_ID,
+      "job_data": {
+        "resources": [ "input/data/sample1-page-1.pdf" ],
+        "params": {
+          "name": "John Doe",
+          "address": "Tokyo",
+          "text": "some text"
+        }
+      }
+    }
+  ]
+
+  def test_if_execute_method_exist(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      task.execute([])
+
+  def test_outputs_outputs_length_over_one(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      outputs = task.execute(self.INPUTS)
+      assert isinstance(outputs, list)
+      assert len(outputs) >= 1
+
+  def test_outputs_contain_job_id(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      outputs = task.execute(self.INPUTS)
+      assert outputs[0]["job_id"] == self.JOB_ID
+
+  def test_outputs_contain_job_data(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      outputs = task.execute(self.INPUTS)
+      assert outputs[0]["job_data"]
+      assert isinstance(outputs[0]["job_data"], dict)
+
+  def test_outputs_contain_params(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      outputs = task.execute(self.INPUTS)
+      assert outputs[0]["job_data"]["params"]
+
+  def test_outputs_contain_resources(self):
+      context = Context(self.DAG_ID)
+      task = Task(context)
+      outputs = task.execute(self.INPUTS)
+      assert isinstance(outputs[0]["job_data"]["resources"], list)
