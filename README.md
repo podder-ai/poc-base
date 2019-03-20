@@ -249,7 +249,7 @@ Please follow the official documents of the libraries.
 ```
 $ cd podder-task
 $ docker build . -t podder-task
-$ docker run --env-file .env.example -v /PATH/TO/podder-task/config:/usr/local/poc_base/config -t podder-task pytest
+$ docker run --env-file .env.example -t podder-task pytest
 ```
 
 ## Implementation note
