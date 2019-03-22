@@ -245,6 +245,13 @@ $ sh ./scripts/pre-commit.sh
 ### Rules of Development
 Please follow the official documents of the libraries.
 
+### How To Execute Unit Test
+```
+$ cd podder-task
+$ docker build . -t podder-task
+$ docker run --env-file .env.example -t podder-task pytest
+```
+
 ## Implementation note
 
 Finally, your task implementation will be integrated to Podder-Pipeline and deploy using Docker/Kubernetes.

@@ -22,7 +22,7 @@ ENV LC_ALL=en_US.UTF-8 \
     PYTHONIOENCODING=utf-8
 
 # python packages
-COPY ./requirements/requirements.txt /root/requirements.txt
+COPY ./requirements.txt /root/requirements.txt
 RUN pip3 install -r /root/requirements.txt
 
 # work directory
