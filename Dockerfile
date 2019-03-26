@@ -30,13 +30,6 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
 # install
 RUN pip3 install podder-task-base
 
-# minami
-#COPY podder-task-base-tmp /root/podder-task-base-tmp
-#WORKDIR /root/podder-task-base-tmp
-#RUN python setup.py bdist_wheel
-#WORKDIR ${POC_BASE_ROOT}
-#RUN pip3 install /root/podder-task-base-tmp/dist/podder_task_base-0.1.3-py3-none-any.whl ; pip3 list
-
 # Task Initializer
 WORKDIR ${POC_BASE_ROOT}
 RUN python -m podder_task_base.task_initializer init /usr/local/poc_base sample-task
