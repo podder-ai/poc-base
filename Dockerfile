@@ -33,7 +33,7 @@ RUN pip3 install podder-task-base
 
 # Task Initializer
 WORKDIR ${POC_BASE_ROOT}
-RUN python -m podder_task_base.task_initializer init /usr/local/poc_base sample-task
+RUN python -m podder_task_base.task_initializer init sample-task
 
 # python packages(default)
 RUN pip3 install -r ${POC_BASE_ROOT}/requirements.default.txt
