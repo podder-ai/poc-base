@@ -13,4 +13,4 @@ mypy:
 	mypy app
 
 test:
-	pytest
+	PIPELINE_DATABASE_URL=mysql://root:password@dbserver/pipeline pytest
