@@ -1,8 +1,8 @@
 from typing import Any, List
 
 from podder_task_base.context import Context
-from podder_task_base.tasks import BaseTask
 from podder_task_base.log import logger
+from podder_task_base.tasks import BaseTask
 
 DATA_PATH = "data/"
 

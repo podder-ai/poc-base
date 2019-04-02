@@ -1,4 +1,4 @@
-all: isort yapf flake8 mypy pytest
+all: isort yapf flake8 mypy test
 
 isort:
 	isort -y -rc ./app
