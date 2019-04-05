@@ -20,7 +20,6 @@ $ tree . -L 2
 ├── app
 │   ├── __init__.py
 │   └── task.py             # main task implementation
-├── inputs.json
 ├── log.yml
 ├── main.py
 ├── requirements
@@ -34,7 +33,9 @@ $ tree . -L 2
 │   ├── data
 │   └── tmp
 └── tests
-    └── test_task.py        # add unit test here
+    ├── files
+    │   └── inputs.json     # sample inputs.json
+    └── unit                # add unit test here
 ```
 
 ### How to implement a task class
@@ -150,7 +151,7 @@ $ docker build -t podder-task .
 $ docker run -it --env-file .env.example podder-task bash
 
 # You can run your code
-$ python main.py --inputs inputs.json
+$ python main.py --inputs tests/files/inputs.json
 ```
 
 - Run with one-liner
@@ -158,7 +159,7 @@ $ python main.py --inputs inputs.json
 If you want to run it with one-liner code, you can also run it.
 
 ```bash
-$ docker run -it --env-file .env.example podder-task python main.py --inputs inputs.json
+$ docker run -it --env-file .env.example podder-task python main.py --inputs tests/files/inputs.json
 ```
 
 ### Run on local
