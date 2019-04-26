@@ -30,11 +30,13 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
     GRPC_PID_FILE="/var/run/poc_base.pid"
 
 # install
-RUN pip3 install 'podder-task-base>=0.1.7,<0.2.0'
+RUN pip3 install 'podder-task-base>=0.2.0,<0.3.0'
 
 # Task Initializer
 WORKDIR ${POC_BASE_ROOT}
-RUN python -m podder_task_base.task_initializer init podder-task
+ARG TASK_NAME
+ARG DOWNLOAD_URL
+RUN python -m podder_task_base.task_initializer init ${TASK_NAME} --download-url="${DOWNLOAD_URL}"
 
 # python packages(default)
 RUN pip3 install -r ${POC_BASE_ROOT}/requirements.default.txt
