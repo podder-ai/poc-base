@@ -33,7 +33,6 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
 WORKDIR ${POC_BASE_ROOT}
 ARG TASK_NAME
 ARG DOWNLOAD_URL
-
 COPY .build .build
 RUN python .build/podder_lib_installer.py ${DOWNLOAD_URL}
 RUN python .build/task_file_copier.py
