@@ -29,24 +29,23 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
     GRPC_MAX_WORKERS=10 \
     GRPC_PID_FILE="/var/run/poc_base.pid"
 
-# install
-RUN pip3 install 'podder-task-base>=0.2.0,<0.3.0'
-
-# Task Initializer
+# Initialize Podder Task
 WORKDIR ${POC_BASE_ROOT}
 ARG TASK_NAME
 ARG DOWNLOAD_URL
-RUN python -m podder_task_base.task_initializer init ${TASK_NAME} --download-url="${DOWNLOAD_URL}"
+COPY .build .build
+RUN python .build/podder_lib_installer.py ${DOWNLOAD_URL}
+RUN python .build/task_file_copier.py
 
-# python packages(default)
-RUN pip3 install -r ${POC_BASE_ROOT}/requirements.default.txt
+# Install default python packages
+RUN pip3 install -r requirements.default.txt
 
-COPY ./requirements.txt ${POC_BASE_ROOT}/requirements.txt
-RUN pip3 install -r ${POC_BASE_ROOT}/requirements.txt
+# Install additional python packages
+COPY ./requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
 # work directory
 COPY . ${POC_BASE_ROOT}
-WORKDIR ${POC_BASE_ROOT}
 
 # Compile .proto file for gRPC
 RUN python ./run_codegen.py
