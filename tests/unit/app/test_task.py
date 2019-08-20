@@ -1,7 +1,7 @@
 from logging import getLogger
 
 from app import Task
-from podder_task_base import Context
+from podder_lib import Context
 
 logger = getLogger()
 
