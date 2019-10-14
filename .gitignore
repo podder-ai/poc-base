@@ -21,5 +21,6 @@ venv/
 tmp/*
 input/*
 output/*
-config/*
+error/*
 !.gitkeep
+.python-version
