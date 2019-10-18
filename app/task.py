@@ -1,22 +1,17 @@
-from typing import Any, List
+from typing import Any
 
-from podder_task_base.context import Context
-from podder_task_base.log import logger
-from podder_task_base.tasks import BaseTask
-
-DATA_PATH = "data/"
+from podder_task_foundation import Context, Task as BaseTask
 
 
-@logger.class_logger
 class Task(BaseTask):
     """
     Concrete task class.
     """
 
-    def __init__(self, context: Context) -> None:
-        super().__init__(context)
+    def initialize(self, context: Context) -> None:
+        pass
 
-    def execute(self, inputs: List[Any]) -> List[Any]:
+    def execute(self, inputs: Any) -> Any:
         """
         Concrete execute method.
         Notes
@@ -34,29 +29,12 @@ class Task(BaseTask):
             Also your can use `self.context.file.get_tmp_path` to get absolute path to `tmp` directory.
             (e.g.) self.context.file.get_tmp_path('sample.csv')
         """
-        self.logger.debug("Start executing...")
-        self.logger.debug("inputs: {}".format(inputs))
+        self.context.logger.debug("Start executing...")
+        self.context.logger.debug("inputs: {}".format(inputs))
 
         # Add your code here
 
         outputs = inputs
-        self.logger.debug("outputs: {}".format(outputs))
-        self.logger.debug("Complete executing.")
+        self.context.logger.debug("outputs: {}".format(outputs))
+        self.context.logger.debug("Complete executing.")
         return outputs
-
-    def set_arguments(self) -> None:
-        """
-        Set your command line arguments if necessary.
-        Notes
-        -----
-        Adding command line arguments.
-        (e.g.) `self.context.config.set_argument('--model', dest="model_path", help='set model path')`
-        """
-        # This "inputs" value will be passed to execute method as an argument
-        # "inputs".
-        self.context.config.set_argument(
-            '--inputs',
-            dest='inputs',
-            help='inputs list',
-            required=True,
-            nargs='+')

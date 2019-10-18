@@ -1,17 +1,14 @@
-from app import Task
-from podder_task_base import Context, settings
-from podder_task_base.services import InputsService
+from app.task import Task
+from podder_task_foundation import Context, settings, MODE
 
 DAG_ID = "___dag_id___"
 
 
-def execute() -> None:
-    settings.init()
-    context = Context(DAG_ID)
+def main() -> None:
+    context = Context(MODE.CONSOLE, DAG_ID)
     task = Task(context)
-    inputs = InputsService(context).create()
-    task.execute(inputs)
+    task.handle()
 
 
 if __name__ == "__main__":
-    execute()
+    main()
