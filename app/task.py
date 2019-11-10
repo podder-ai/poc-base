@@ -29,7 +29,7 @@ class Task(BaseTask):
         context.logger.debug("inputs: {}".format(inputs))
 
         # Add your code here
-
+        print("ABC")
         outputs = inputs
         context.logger.debug("outputs: {}".format(outputs))
         context.logger.debug("Complete executing.")

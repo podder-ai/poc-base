@@ -1,13 +1,15 @@
+import uuid
+
 from app.task import Task
-from podder_task_foundation import MODE, Context
+from podder_task_foundation import MODE
 
 DAG_ID = "___dag_id___"
 
 
 def main() -> None:
-    context = Context(MODE.CONSOLE, DAG_ID)
     task = Task(MODE.CONSOLE)
-    task.handle(DAG_ID)
+    job_id = str(uuid.uuid1())
+    task.handle(job_id, DAG_ID)
 
 
 if __name__ == "__main__":
