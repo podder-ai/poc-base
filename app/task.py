@@ -11,7 +11,7 @@ class Task(BaseTask):
     def initialize(self, context: Context) -> None:
         context.logger.debug("Start Initializing...")
 
-    def execute(self, inputs: Any, context: Context) -> Any:
+    def execute_file(self, file_path: str, context: Context) -> Any:
         """
         Concrete execute method.
         Notes
@@ -26,11 +26,11 @@ class Task(BaseTask):
             (e.g.) self.context.file.get_tmp_path('sample.csv')
         """
         context.logger.debug("Start executing...")
-        context.logger.debug("inputs: {}".format(inputs))
+        context.logger.debug("inputs: {}".format(file_path))
 
         # Add your code here
-        print("ABC")
-        outputs = inputs
+        print("Process file:" + file_path)
+        outputs = file_path
         context.logger.debug("outputs: {}".format(outputs))
         context.logger.debug("Complete executing.")
         return outputs
