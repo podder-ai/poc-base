@@ -22,5 +22,6 @@ tmp/*
 input/*
 output/*
 error/*
+logs/*
 !.gitkeep
 .python-version

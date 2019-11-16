@@ -3,7 +3,7 @@ DO NOT MODIFY THIS FILE.
 """
 
 import os
-
+import dotenv
 from app.task import Task
 from podder_task_foundation import MODE, Context
 from podder_task_foundation.api import GrpcServer, TaskApiExecutor
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     Run gRPC server.
     """
     task = Task(MODE.PIPELINE)
-
+    dotenv.load_dotenv(".env")
     GrpcServer(
         stdout_file=open(os.getenv("GRPC_LOG"), 'a'),
         stderr_file=open(os.getenv("GRPC_ERROR_LOG"), 'a'),
