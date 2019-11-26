@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 RUN apt-get update -y \
 && apt-get install -y python3.6 \
 && apt-get install -y python3-pip \
+&& apt-get install -y libssl-dev \
 && apt-get install -y mysql-client \
 && apt-get install -y libmysqlclient-dev \
 && apt-get install -y wget \
