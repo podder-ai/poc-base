@@ -8,7 +8,6 @@ RUN apt-get update -y \
 && apt-get install -y libmysqlclient-dev \
 && apt-get install -y wget \
 && apt-get install -y locales \
-&& apt-get install -y libssl-dev \
 && apt-get install -y unixodbc-dev \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
