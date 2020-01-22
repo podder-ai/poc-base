@@ -13,7 +13,7 @@ RUN apt-get update -y \
 && rm -rf /var/lib/apt/lists/* \
 && cd /usr/local/bin \
 && ln -s /usr/bin/python3 python \
-&& pip3 install --upgrade pip
+&& pip3 install --upgrade pip setuptools
 
 # locale setting
 RUN locale-gen en_US.UTF-8
@@ -33,9 +33,7 @@ ENV PYTHONPATH="${PYTHONPATH}:${POC_BASE_ROOT}/app" \
 # Initialize Podder Task
 WORKDIR ${POC_BASE_ROOT}
 ARG TASK_NAME
-ARG DOWNLOAD_URL
 COPY .build .build
-RUN python .build/podder_lib_installer.py ${DOWNLOAD_URL}
 RUN python .build/task_file_copier.py
 
 # Install default python packages
